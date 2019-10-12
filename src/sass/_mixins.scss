@@ -6,11 +6,33 @@ $breakpoints: (
   xl: 1200px
 );
 
-@mixin breakpoint($breakpoint) {
-  // Get the breakpoint value
-  $breakpoint-value: map-get($breakpoints, $breakpoint);
+@mixin breakpoint($breakpoint, $min-or-max: 'min') {
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
 
-  @media (min-width: $breakpoint-value) {
+    @media screen and (#{$min-or-max}-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
     @content;
+  }
+}
+
+@mixin create-col-classes($modifier, $grid-cols, $breakpoint) {
+  @include breakpoint($breakpoint) {
+    .col#{$modifier}-offset-0 {
+      margin-left: 0;
+    }
+
+    @for $i from 1 through $grid-cols {
+      .col#{$modifier}-#{$i} {
+        flex-basis: (100 / ($grid-cols / $i)) * 1%;
+      }
+
+      .col#{$modifier}-offset-#{$i} {
+        margin-left: (100 / ($grid-cols / $i)) * 1%;
+      }
+    }
   }
 }

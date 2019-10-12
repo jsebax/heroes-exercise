@@ -1,0 +1,44 @@
+$map-grid-props: (
+  '': '',
+  '-sm': 'sm',
+  '-md': 'md',
+  '-lg': 'lg',
+  '-xl': 'xl'
+);
+$grid__cols: 12;
+
+.container {
+  max-width: map-get($breakpoints, md);
+  margin: 0 auto;
+
+  &--fluid {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@each $modifier, $breakpoint in $map-grid-props {
+  @include create-col-classes($modifier, $grid__cols, $breakpoint);
+
+  @if ($modifier == '') {
+    $modifier: '-xs';
+  }
+
+  @include breakpoint($breakpoint, 'max') {
+    .hidden#{$modifier}-down {
+      display: none !important;
+    }
+  }
+
+  @include breakpoint($breakpoint) {
+    .hidden#{$modifier}-up {
+      display: none !important;
+    }
+  }
+}
