@@ -4,12 +4,12 @@
     @click="descriptionEvent"
     :aria-expanded="`${showDescription}`"
     :aria-controls="`${characterId}-description`"
-    class="character-card"
+    class="character-card col-12 col-sm-6 col-md-4 col-lg-3"
     :class="{'character-card--show-description': showDescription}"
   >
     <div class="character-card__info" :id="name">
       <div class="character-card__avatar" :aria-hidden="true" :alt="name">
-        <img class="character-card__avatar-img" :src="thumbnail"/>
+        <img class="character-card__avatar-img" :src="thumbnail" />
       </div>
       <div class="character-card__nickname-container">
         <div class="character-card__nickname">{{name}}</div>
@@ -52,14 +52,16 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  margin: 5px;
-  width: 200px;
   height: 100%;
   cursor: pointer;
   transform-style: preserve-3d;
   box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1);
   border-radius: 5px;
+  margin-bottom: 40px;
+
+  @include breakpoint(sm) {
+    margin: 0 20px 40px;
+  }
 
   &__info {
     transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);

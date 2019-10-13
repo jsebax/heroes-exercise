@@ -1,9 +1,11 @@
 <template>
   <div class="container">
-    <section class="characters">
-      <h1 class="characters__title">Characters</h1>
-      <characters-list :characters="characters"></characters-list>
-    </section>
+    <div class="row">
+      <section class="characters">
+        <h1 class="characters__title">Characters</h1>
+        <characters-list :characters="characters"></characters-list>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -41,9 +43,10 @@ export default {
 </script>
 <style lang="scss">
 .characters {
+  padding: 40px 0;
 
   &__title {
-    padding: 0 10px;
+    margin-bottom: 40px;
   }
 }
 </style>

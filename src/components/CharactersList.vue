@@ -30,6 +30,10 @@ export default {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 20px 0;
+  margin-bottom: -40px;
+
+  @include breakpoint(sm) {
+    margin: 0 -20px -40px;
+  }
 }
 </style>
